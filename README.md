@@ -6,7 +6,7 @@ Large Magento installations can be complicated webs of abstracted code. This rep
 
 ### How to Use
 
-Drop the file into the pub of the Magento installation. Run http://mydomain.com/pub/ReadMagento.php in your web browser. There is a flag at the start of the class to exclude vendor modules from the analysis.
+Drop the file into the pub of the Magento installation. Run http://mydomain.com/ReadMagento.php in your web browser. There is a flag at the start of the class to exclude vendor modules from the analysis.
 
 ### Current Functionality
 
