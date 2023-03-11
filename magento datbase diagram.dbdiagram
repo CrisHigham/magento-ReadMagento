@@ -1,0 +1,46 @@
+// Entity types eg Product
+table eav_entity_type{
+  entity_type_id smallint pk
+  entity_type_code varchar(50)
+  entity_table varchar(255)
+  default_attribute_set_id smallint
+  additional_attribute_table varchar(255)
+}
+
+table eav_entity_attribute{
+  entity_attribute_id int pk
+  entity_type_id smallint
+  attribute_set_id smallint
+  attribute_group_id smallint
+  attribute_id smallint
+}
+
+// Information about the actual entity attribute
+// the value in backend_type, determines which of the eav tables to use
+table eav_attribute{
+  attribute_id smallint pk
+  entity_type_id smallint [ref: > eav_entity_type.entity_type_id]
+  attribute_code int
+  backend_type varchar(8)
+}
+// Attribute sets, both default and custom
+table eav_attribute_set{
+  attribute_set_id smallint pk [ref: > eav_entity_attribute.attribute_set_id]
+  entity_type_id smallint 
+  attribute_set_name varchar(255)
+}
+
+table catalog_product_entity{
+  row_id int pk
+  entity_id int
+  attribute_set_id smallint [ref: > eav_attribute_set.attribute_set_id]
+  type_id varchar(32)
+  sku varchar(64)
+}
+
+table catalog_product_entity_int{
+  value_id int pk
+  attribute_id smallint [ref: > eav_attribute.attribute_id]
+  row_id int [ref: > catalog_product_entity.row_id]
+  value int
+}
